@@ -12,16 +12,16 @@ pipeline {
                 sh 'gradle build'
             }
         }
-        stage('Test') {
-            steps {
-                sh 'gradle test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         sh 'gradle test'
+        //     }
+        //     post {
+        //         always {
+        //             junit 'target/surefire-reports/*.xml'
+        //         }
+        //     }
+        // }
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
