@@ -1,6 +1,5 @@
-FROM openjdk:11-jre-slim
-RUN mkdir /app
-COPY ./build/libs/*.jar /app/
+FROM eclipse-temurin:8u362-b09-jre-ubi9-minimal
+# RUN mkdir /app
 WORKDIR /app
-# does not work like that CMD "java" "-jar" "*.jar"
-ENTRYPOINT [ "java -jar  *.jar" ]
+COPY ./build/libs/*.jar .
+CMD java -jar *.jar
