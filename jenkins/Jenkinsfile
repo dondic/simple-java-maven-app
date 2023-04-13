@@ -17,12 +17,12 @@ pipeline {
         }
         stage('create Docker image') {
             steps {
-                sh 'docker build -t donatasdicmanas/private-repo:hello-world .'
+                sh 'docker build -t donatasdicmanas/private-repo:hello-world-1.0 .'
             }
         }
         stage('push image to dockerhub private repo') {
             steps {
-                sh 'docker build -t donatasdicmanas/private-repo:hello-world .'
+                sh 'docker push donatasdicmanas/private-repo:hello-world-1.0'
             }
         }
 
