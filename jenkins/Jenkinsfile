@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'mvn test'
                 script { withSonarQubeEnv( installationName: 'SonarQube') {
-                        sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar'
+                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar'
                         }
             }
             post {
@@ -23,12 +23,13 @@ pipeline {
                     junit 'target/surefire-reports/*.xml'
                 }
             }
+            }
         }
+
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
     }
-}
 }
