@@ -10,6 +10,7 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+
         stage('Test') {
             steps {
                 sh 'mvn test'
@@ -20,12 +21,16 @@ pipeline {
                 }
             }
         }
+
         stage('SonarQube') {
-            script { withSonarQubeEnv( installationName: 'SonarQube') {
+            steps {
+                script { withSonarQubeEnv( installationName: 'SonarQube') {
                 sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar'
+                }
                 }
             }
         }
+
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
